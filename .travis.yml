@@ -7,9 +7,20 @@ python:
   - "3.6"
   - "3.6-dev"  # 3.6 development branch
   - "3.7-dev"  # 3.7 development branch
-# command to install dependencies
+
+services:
+  - docker
+
+before_install:
+  # - docker run --rm -p 5432:5432 --name demo-postgres -e POSTGRES_PASSWORD=mysecretpassword postgres:latest
+  # - docker run -d --rm -p 8080:8080 nbeguier/cassh-server:latest
+
 install:
-  - if [[ $TRAVIS_PYTHON_VERSION == 2.* ]]; then pip install -r requirements.txt; fi
-  - if [[ $TRAVIS_PYTHON_VERSION == 3.* ]]; then pip3 install -r requirements.txt; fi
-# command to run tests
-script: pylint cassh -d redefined-builtin -d useless-object-inheritance
+  - if [[ $TRAVIS_PYTHON_VERSION == 2.* ]]; then pip install -r requirements.txt; pip install psycopg2; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == 3.* ]]; then pip3 install -r requirements.txt; pip3 install psycopg2; fi
+  - python server/init_pg.py
+
+script:
+  - pylint cassh -d redefined-builtin -d useless-object-inheritance
+  - docker run -d --rm -p 8080:8080 nbeguier/cassh-server:latest
+  - ./tests/test.sh

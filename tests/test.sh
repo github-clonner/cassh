@@ -73,7 +73,7 @@ else
     echo "[FAIL] Test add user named 'all' (should fail): ${RESP}"
 fi
 
-RESP=$(curl -s "http://localhost:8080/client?realname=test.user@domain.fr" | jq .status)
+RESP=$(curl -s "http://localhost:8080/client?realname=test.user@domain.fr" | jq .status 2>/dev/null)
 if [ "${RESP}" == '"PENDING"' ]; then
     echo "[OK] Test status pending user"
 else
@@ -150,7 +150,7 @@ else
     echo "[FAIL] Test admin revoke 'toto' : ${RESP}"
 fi
 
-RESP=$(curl -s http://localhost:8080/admin/toto?status=true | jq .status)
+RESP=$(curl -s http://localhost:8080/admin/toto?status=true | jq .status 2>/dev/null)
 if [ "${RESP}" == '"REVOKED"' ]; then
     echo "[OK] Test admin verify 'toto' status"
 else
@@ -178,7 +178,7 @@ else
     echo "[FAIL] Test admin active unknown user : ${RESP}"
 fi
 
-RESP=$(curl -s http://localhost:8080/admin/testuser?status=true | jq .status)
+RESP=$(curl -s http://localhost:8080/admin/testuser?status=true | jq .status 2>/dev/null)
 if [ "${RESP}" == '"PENDING"' ]; then
     echo "[OK] Test admin verify 'testuser' status"
 else
