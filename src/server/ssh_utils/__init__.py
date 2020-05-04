@@ -1,5 +1,12 @@
 #!/usr/bin/env python
-""" ssh_utils lib """
+"""
+ssh_utils lib
+
+Copyright 2017-2020 Nicolas BEGUIER
+Licensed under the Apache License, Version 2.0
+Written by Nicolas BEGUIER (nicolas_beguier@hotmail.com)
+
+"""
 
 from os import remove
 from subprocess import check_output, CalledProcessError
@@ -29,7 +36,7 @@ def get_cert_contents(public_key_filename):
     remove(cert_filename)
     return cert_contents
 
-class Authority(object):
+class Authority():
     """
     Class which control authority certification
     """

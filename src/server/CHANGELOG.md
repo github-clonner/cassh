@@ -4,6 +4,101 @@ CHANGELOG
 CASSH Server
 -----
 
+2.0.2
+-----
+
+2020/04/09
+
+### Bug Fixes
+  - Handle custom_principals as None (old database entry)
+  - Urldecode 'add' parameter
+
+2.0.1
+-----
+
+2020/04/06
+
+### Bug Fixes
+  - Unblock no-membership/no-bindCN user with a valid login/password
+
+2.0.0
+-----
+
+2020/04/03
+
+### New Features
+  - Add LDAP mapping with principals
+  - Add multiple options in LDAP configuration, some breaking changes
+  - Add OpenLDAP in tests
+
+### Changes
+  - LDAP configuration: "filterstr" is deprecated, use "filter_realname_key" instead
+  - Remove GET /admin/principals (not used in client and not safe)
+  - Remove deprecated PATCH endpoint for principals
+  - rename get_principals to clean_principals_output
+  - add get_ldap_conn, get_memberof, truncate_principals, merge_principals
+  - Remove py3.4 support (json decoder issues)
+
+### Bug Fixes
+  - ldap_authentification return when bad options
+  - ldap_authentification uncatch error if no object in LDAP response
+
+1.12.2
+-----
+
+2020/03/26
+
+### Changes
+  - upgrade requirements
+
+### Clean
+  - Split functions
+  - Validate all inputs
+
+### Bug Fixes
+  - remove/add wrong imports
+  - autoreload bug
+  - duplicates revoke
+
+1.12.1
+-----
+
+2020/03/24
+
+### Bug Fixes
+  - Remove duplicate principales
+
+1.12.0
+-----
+
+2020/03/24
+
+
+### Changes
+  - New user starts with its username as principal
+  - Purge set the username as principals, instead of nothing
+
+### Bug Fixes
+  - Unquote action values for Principals and PrincipalsSearch
+  - Allow multiple actions for Principals
+
+1.11.0
+-----
+
+2020/03/24
+
+### New Features
+  - Principals CRUD-like endpoint '/admin/<username>/principals'
+  - Principals Search endpoint '/admin/all/principals/search'
+
+### Changes
+  - Uniformize PATTERN and reponse
+  - Warning message when using `PATCH /admin/<username>` to update principals
+  - Split tests
+
+### Bug Fixes
+  - Empty response when no member in cluster, instead of crash
+
 1.9.2
 -----
 

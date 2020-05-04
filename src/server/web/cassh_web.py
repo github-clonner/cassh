@@ -1,6 +1,13 @@
 #!/usr/bin/python3
 #-*- coding: utf-8 -*-
-""" Cassh WEB Client """
+"""
+Cassh WEB Client
+
+Copyright 2017-2020 Nicolas BEGUIER
+Licensed under the Apache License, Version 2.0
+Written by Nicolas BEGUIER (nicolas_beguier@hotmail.com)
+
+"""
 
 # Standard library imports
 from __future__ import print_function
@@ -16,7 +23,6 @@ from flask import Flask, render_template, request, Response, redirect, send_from
 from requests import post, put
 from requests.exceptions import ConnectionError
 from urllib3 import disable_warnings
-from werkzeug import secure_filename
 
 # Disable HTTPs warnings
 disable_warnings()
